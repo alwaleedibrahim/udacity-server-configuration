@@ -8,8 +8,10 @@ This is a project for [Full Stack Developer Nanodegree - Udacity](https://www.ud
 
 | **Public IP:** | [3.126.217.230](http://3.126.217.230) |
 | ------ | ------- |
+| **URL**| [http://www.3.126.217.230.xip.io/](http://www.3.126.217.230.xip.io/) |
 | **SSH Port:** | 2200 |
-| **User name:** | ubuntu |
+| **User name:** | grader |
+| **Connect to ssh**| `ssh -i key grader@3.126.217.230 -p 2200` |
 
 # Configuration steps
 ## Get your server.
