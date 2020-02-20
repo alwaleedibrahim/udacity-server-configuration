@@ -46,8 +46,23 @@ To                         Action      From
 
 ## Give grader access.
 6. Create a new user account named grader.
+`sudo adduser grader`
 7. Give grader the permission to sudo.
+`sudo nano /etc/sudoers.d/grader` and type `grader ALL=(ALL:ALL) ALL`
 8. Create an SSH key pair for grader using the ssh-keygen tool.
+- Generate key pair on your local machine using `ssh-keygen`
+- On server machine
+```
+su - grader
+mkdir .ssh
+touch .ssh/authorized_keys
+nano .ssh/authorized_keys
+```
+- Copy the public key from your local machine and paste it in this file and save.
+```
+chmod 700 .ssh
+chmod 644 .ssh/authorized_keys
+```
 
 ## Prepare to deploy your project.
 9. Configure the local timezone to UTC.
