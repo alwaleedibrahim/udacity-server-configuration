@@ -62,15 +62,45 @@ nano .ssh/authorized_keys
 ```
 chmod 700 .ssh
 chmod 644 .ssh/authorized_keys
+sudo chown -R grader.grader /home/grader/.ssh
 sudo service ssh restart
 ```
 
 ## Prepare to deploy your project.
 9. Configure the local timezone to UTC.
+- already UTC
 10. Install and configure Apache to serve a Python mod_wsgi application.
+```
+sudo apt-get install apache
+sudo apt-get install python-setuptools libapache2-mod-wsgi
+sudo apt-get install libapache2-mod-wsgi-py3
+```
 11. Install and configure PostgreSQL:
+`sudo apt-get install postgresql`
   - Do not allow remote connections
+  check `sudo vim /etc/postgresql/9.3/main/pg_hba.conf`
   - Create a new database user named catalog that has limited permissions to your catalog application database.
+  Login as user "postgres" `sudo su - postgres`
+
+Get into postgreSQL shell `psql`
+
+Create a new database named catalog and create a new user named catalog in postgreSQL shell
+```
+postgres=# CREATE DATABASE catalog;
+postgres=# CREATE USER catalog;
+```
+Set a password for user catalog
+```
+postgres=# ALTER ROLE catalog WITH PASSWORD 'password';
+```
+Give user "catalog" permission to "catalog" application database
+```
+postgres=# GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
+```
+Quit postgreSQL `postgres=# \q`
+
+Exit from user "postgres" `exit`
+
 12. Install git.
 
 ## Deploy the Item Catalog project.
