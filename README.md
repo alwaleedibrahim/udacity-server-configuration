@@ -78,7 +78,7 @@ sudo service ssh restart
 
 ## Prepare to deploy your project.
 9. Configure the local timezone to UTC.
-- already UTC
+ Already UTC
 ```
 $ timedatectl
 ```
@@ -98,36 +98,35 @@ sudo apt-get install python-setuptools libapache2-mod-wsgi
 sudo apt-get install libapache2-mod-wsgi-py3
 ```
 11. Install and configure PostgreSQL:
+
 `sudo apt-get install postgresql`
-  - Do not allow remote connections
-  check `sudo vim /etc/postgresql/9.3/main/pg_hba.conf`
-  - Create a new database user named catalog that has limited permissions to your catalog application database.
-  Login as user "postgres" `sudo su - postgres`
-
-Get into postgreSQL shell `psql`
-
-Create a new database named catalog and create a new user named catalog in postgreSQL shell
-```
-postgres=# CREATE DATABASE catalog;
-postgres=# CREATE USER catalog;
-```
-Set a password for user catalog
-```
-postgres=# ALTER ROLE catalog WITH PASSWORD 'password';
-```
-Give user "catalog" permission to "catalog" application database
-```
-postgres=# GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
-```
-Quit postgreSQL `postgres=# \q`
-
-Exit from user "postgres" `exit`
+Do not allow remote connections
+  check remote connections `sudo nano /etc/postgresql/9.3/main/pg_hba.conf`
+Create a new database user named catalog that has limited permissions to your catalog application database:
+	Login as user "postgres" `sudo su - postgres`
+	Get into postgreSQL shell `psql`
+	Create a new database named catalog and create a new user named catalog in postgreSQL shell
+	```
+	postgres=# CREATE DATABASE catalog;
+	postgres=# CREATE USER catalog;
+	```
+	Set a password for user catalog
+	```
+	postgres=# ALTER ROLE catalog WITH PASSWORD 'password';
+	```
+	Give user "catalog" permission to "catalog" application database
+	```
+	postgres=# GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
+	```
+	Quit postgreSQL `postgres=# \q`
+	Exit from user "postgres"  `exit`
 
 12. Install git.
 `sudo apt-get install git`
 
 ## Deploy the Item Catalog project.
 13. Clone and setup your Item Catalog project from the Github repository you created earlier in this Nanodegree program.
+14. Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser. Make sure that your .git directory is not publicly accessible via a browser!
 ```
 cd /var/www
 sudo mkdir FlaskApp
@@ -155,6 +154,7 @@ Add the following lines of code to the file to configure the virtual host.
 ```
 <VirtualHost *:80>
 	ServerName 3.126.217.230
+	ServerAlias 3.126.217.230.xip.io
 	ServerAdmin elwaleed315@gmail.com
 	WSGIScriptAlias / /var/www/FlaskApp/flaskapp.wsgi
 	<Directory /var/www/FlaskApp/FlaskApp/>
@@ -166,12 +166,19 @@ Add the following lines of code to the file to configure the virtual host.
 		Order allow,deny
 		Allow from all
 	</Directory>
+	
+	<Directorymatch "^/.*/\.git/">
+		Order deny,allow
+		Deny from all
+	</Directorymatch>
+
 	ErrorLog ${APACHE_LOG_DIR}/error.log
 	LogLevel warn
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
 Enable the virtual host with the following command: `sudo a2ensite FlaskApp`
+Disable default apache page: `sudo a2dissite 000-default`
 
 Create the .wsgi File
 Create the .wsgi File under `/var/www/FlaskApp`:
@@ -192,5 +199,5 @@ application.secret_key = 'Add your secret key'
 ```
 Restart Apache
 `sudo service apache2 restart`
-14. Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser. Make sure that your .git directory is not publicly accessible via a browser!
 
+# Resources
