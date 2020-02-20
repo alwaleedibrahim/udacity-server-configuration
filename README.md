@@ -5,9 +5,9 @@ This is a project for [Full Stack Developer Nanodegree - Udacity](https://www.ud
 > You will take a baseline installation of a Linux server and prepare it to host your web applications. You will secure your server from a number of attack vectors, install and configure a database server, and deploy one of your existing web applications onto it.
 
 # Access details 
-- Public IP: [3.126.217.230](http://3.126.217.230)
-- SSH Port: *2200*
-- User name: *ubuntu*
+- **Public IP:** [3.126.217.230](http://3.126.217.230)
+- **SSH Port:** 2200
+- **User name:** ubuntu
 
 # Configuration steps
 ## Get your server.
@@ -174,3 +174,4 @@ application.secret_key = 'Add your secret key'
 Restart Apache
 `sudo service apache2 restart`
 14. Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser. Make sure that your .git directory is not publicly accessible via a browser!
+
