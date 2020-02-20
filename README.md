@@ -200,4 +200,8 @@ application.secret_key = 'Add your secret key'
 Restart Apache
 `sudo service apache2 restart`
 
-# Resources
+# Refrences
+- [How does ServerName and ServerAlias work?](https://serverfault.com/questions/520195/how-does-servername-and-serveralias-work)
+- [Ubuntu Manpage a2ensite, a2dissite](http://manpages.ubuntu.com/manpages/xenial/man8/a2ensite.8.html)
+- [How do I force SSH to only allow users with a key to log in?](https://askubuntu.com/questions/346857/how-do-i-force-ssh-to-only-allow-users-with-a-key-to-log-in)
+- [How do I prevent apache from serving the .git directory?](https://serverfault.com/questions/128069/how-do-i-prevent-apache-from-serving-the-git-directory)
