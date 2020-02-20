@@ -13,20 +13,24 @@ This is a project for Udacity's full stack developer nano degree.
 
 ## Secure your server.
 3. Update all currently installed packages.
-` sudo apt-get update
-sudo apt-get upgrade`
+```
+sudo apt-get update
+sudo apt-get upgrade
+```
 4. Change the SSH port from 22 to 2200. Make sure to configure the Lightsail firewall to allow it.
 `sudo nano /etc/ssh/sshd_config` and change `Port 22` to `Port 2200`
 5. Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).
-`sudo ufw default deny incoming
+```
+sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw allow 2200/tcp
 sudo ufw allow 80/tcp
 sudo ufw allow 123/tcp
-sudo ufw enable`
+sudo ufw enable
+```
 
 `sudo ufw status` to check
-`
+```
 sudo ufw status
 Status: active
 
@@ -38,7 +42,7 @@ To                         Action      From
 2200/tcp (v6)              ALLOW       Anywhere (v6)             
 80/tcp (v6)                ALLOW       Anywhere (v6)             
 123/tcp (v6)               ALLOW       Anywhere (v6) 
-`
+```
 
 ## Give grader access.
 6. Create a new user account named grader.
