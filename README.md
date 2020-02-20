@@ -25,6 +25,7 @@ sudo apt-get update
 sudo apt-get upgrade
 ```
 4. Change the SSH port from 22 to 2200. Make sure to configure the Lightsail firewall to allow it.
+
 `sudo nano /etc/ssh/sshd_config` and change `Port 22` to `Port 2200`
 5. Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).
 ```
@@ -53,12 +54,14 @@ To                         Action      From
 
 ## Give grader access.
 6. Create a new user account named grader.
+
 `sudo adduser grader`
 7. Give grader the permission to sudo.
+
 `sudo nano /etc/sudoers.d/grader` and type `grader ALL=(ALL:ALL) ALL`
 8. Create an SSH key pair for grader using the ssh-keygen tool.
 - Generate key pair on your local machine using `ssh-keygen`
-- On server machine
+- On server machine:
 ```
 su - grader
 mkdir .ssh
@@ -76,6 +79,18 @@ sudo service ssh restart
 ## Prepare to deploy your project.
 9. Configure the local timezone to UTC.
 - already UTC
+```
+$ timedatectl
+```
+```
+      Local time: Thu 2020-02-20 22:58:49 UTC
+  Universal time: Thu 2020-02-20 22:58:49 UTC
+        RTC time: Thu 2020-02-20 22:58:49
+       Time zone: Etc/UTC (UTC, +0000)
+ Network time on: yes
+NTP synchronized: yes
+ RTC in local TZ: no
+```
 10. Install and configure Apache to serve a Python mod_wsgi application.
 ```
 sudo apt-get install apache
