@@ -62,6 +62,7 @@ nano .ssh/authorized_keys
 ```
 chmod 700 .ssh
 chmod 644 .ssh/authorized_keys
+sudo service ssh restart
 ```
 
 ## Prepare to deploy your project.
