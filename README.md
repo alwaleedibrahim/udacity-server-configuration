@@ -1,12 +1,13 @@
 # Linux Server Configuration
 
-This is a project for Udacity's full stack developer nano degree.
+This is a project for [Full Stack Developer Nanodegree - Udacity](https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd0044)
 ## Project Overview
 > You will take a baseline installation of a Linux server and prepare it to host your web applications. You will secure your server from a number of attack vectors, install and configure a database server, and deploy one of your existing web applications onto it.
 
 # Access details 
-- Public IP: 3.126.217.230
-- SSH Port: 2200
+- Public IP: [3.126.217.230](http://3.126.217.230)
+- SSH Port: *2200*
+- User name: *ubuntu*
 
 # Configuration steps
 ## Get your server.
